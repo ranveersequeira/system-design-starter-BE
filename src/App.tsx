@@ -1,4 +1,5 @@
-import { NavLink, Route, Routes, Navigate } from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink, Route, Routes, Navigate, useLocation } from 'react-router-dom'
 import { CHAPTERS } from './content'
 import { useProgress } from './lib/store'
 import { isDue } from './lib/srs'
@@ -30,13 +31,21 @@ function dueCount(srs: Record<string, { due: number; reps: number }>): number {
 export default function App() {
   const p = useProgress()
   const due = dueCount(p.srs)
+  const location = useLocation()
+  const [menuLocation, setMenuLocation] = useState<string | null>(null)
+  const menuOpen = menuLocation === location.key
   return (
     <div className="app">
       <aside className="sidebar">
-        <div className="brand">
-          <span>◆</span> System Design
+        <div className="sidebar-header">
+          <div className="brand"><span>◆</span> System Design</div>
+          <button className="menu-toggle btn-ghost" aria-expanded={menuOpen} aria-controls="main-nav"
+            onClick={() => setMenuLocation(menuOpen ? null : location.key)}>
+            {menuOpen ? 'Close' : 'Menu'}
+          </button>
         </div>
-        <nav className="nav">
+        <nav id="main-nav" className={`nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Main navigation"
+          onClick={() => setMenuLocation(null)}>
           <NavLink to="/" end>Dashboard</NavLink>
           <NavLink to="/curriculum">Curriculum</NavLink>
           <NavLink to="/review">

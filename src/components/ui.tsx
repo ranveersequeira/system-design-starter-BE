@@ -22,7 +22,7 @@ export function Callout({ kind, title, children }: { kind: 'model' | 'check' | '
 }
 
 export function Diagram({ text }: { text: string }) {
-  return <div className="diagram">{text}</div>
+  return <div className="diagram" role="region" aria-label="Scrollable diagram" tabIndex={0}>{text}</div>
 }
 
 export function ChapterBadge({ ch }: { ch: Chapter }) {

@@ -15,7 +15,7 @@ export default function ChapterOverview() {
   const learnTarget = firstUnread === -1 ? 0 : firstUnread
 
   return (
-    <div className="grid" style={{ gridTemplateColumns: '2fr 1fr', gap: 18 }}>
+    <div className="grid chapter-overview">
       <div>
         <div className="card">
           <div className="eyebrow">Summary</div>

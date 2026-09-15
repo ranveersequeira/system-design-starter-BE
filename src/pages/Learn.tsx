@@ -37,7 +37,7 @@ export default function Learn() {
   const canAdvance = !s.checkpoint || revealed
 
   return (
-    <div>
+    <div className="reading-page">
       <div className="row between" style={{ marginBottom: 12 }}>
         <div className="timeline">
           {ch.sections.map((sec, i) => (
@@ -49,7 +49,7 @@ export default function Learn() {
         <span className="muted small">Page {idx + 1} of {ch.sections.length}</span>
       </div>
 
-      <article className="card">
+      <article className="card lesson">
         <div className="eyebrow">Section {idx + 1}</div>
         <h2>{s.title}</h2>
         <Md>{s.body}</Md>
